@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="editPesquisar" prefHeight="912.0" prefWidth="1308.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="telas.TelaInicialController">
+   <children>
+      <Text layoutX="550.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CADASTRO DE CLIENTE E CONSULTA">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="0.9130434782608696">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#2e62ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <Text fill="RED" layoutX="28.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações pessoais">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="editCod" layoutX="28.0" layoutY="84.0" prefHeight="30.0" prefWidth="229.0" promptText="Código do cliente" />
+      <TextField fx:id="editNome" layoutX="276.0" layoutY="84.0" prefHeight="3.0" prefWidth="962.0" promptText="Nome completo" />
+      <TextField fx:id="editCpf" layoutX="28.0" layoutY="143.0" prefHeight="30.0" prefWidth="229.0" promptText="CPF" />
+      <TextField fx:id="editRg" layoutX="276.0" layoutY="143.0" prefHeight="30.0" prefWidth="194.0" promptText="RG" />
+      <DatePicker fx:id="editData" layoutX="493.0" layoutY="143.0" prefHeight="30.0" prefWidth="175.0" promptText="Data de nascimento" />
+      <Text fill="#82943b" layoutX="26.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço de entrega">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="editEnd" layoutX="26.0" layoutY="253.0" prefHeight="30.0" prefWidth="488.0" promptText="Endereço" />
+      <TextField fx:id="editNum" layoutX="536.0" layoutY="253.0" prefHeight="30.0" prefWidth="219.0" promptText="Número" />
+      <TextField fx:id="editComplem" layoutX="765.0" layoutY="253.0" prefHeight="24.0" prefWidth="473.0" promptText="Complemento" />
+      <TextField fx:id="editBairro" layoutX="27.0" layoutY="308.0" prefHeight="30.0" prefWidth="488.0" promptText="Bairro" />
+      <TextField fx:id="editCep" layoutX="536.0" layoutY="308.0" prefHeight="30.0" prefWidth="219.0" promptText="CEP" />
+      <TextField fx:id="editCidade" layoutX="766.0" layoutY="308.0" prefHeight="30.0" prefWidth="473.0" promptText="Cidade" />
+      <Text fill="#2efffb" layoutX="28.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contato">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="editCel" layoutX="25.0" layoutY="412.0" prefHeight="30.0" prefWidth="268.0" promptText="Celular" />
+      <TextField fx:id="editEmail" layoutX="324.0" layoutY="412.0" prefHeight="30.0" prefWidth="912.0" promptText="E-mail" />
+      <Button layoutX="373.0" layoutY="473.0" mnemonicParsing="false" onAction="#acaoSalvar" prefHeight="31.0" prefWidth="175.0" text="SALVAR" textFill="#0b23ff" />
+      <Button layoutX="601.0" layoutY="473.0" mnemonicParsing="false" onAction="#acaoCancelar" prefHeight="31.0" prefWidth="194.0" text="CANCELAR" textFill="#ff0d00" />
+      <TextField fx:id="editNomePesquisar" layoutX="783.0" layoutY="525.0" prefHeight="30.0" prefWidth="325.0" promptText="Digite o nome para buscar">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <effect>
+            <Lighting bumpInput="$null">
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </TextField>
+      <Button layoutX="1123.0" layoutY="525.0" mnemonicParsing="false" onAction="#acaoPesquisar" prefHeight="30.0" prefWidth="164.0" text="Pesquisar" textFill="RED" />
+      <Text fill="BLUE" layoutX="28.0" layoutY="545.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Armazenamento de dados">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tabela" layoutX="17.0" layoutY="570.0" prefHeight="271.0" prefWidth="1276.0">
+        <columns>
+          <TableColumn fx:id="colunaCodigo" minWidth="8.0" prefWidth="138.0" text="Código cliente" />
+          <TableColumn fx:id="colunaNome" prefWidth="77.0" text="Nome" />
+            <TableColumn fx:id="colunaCpf" prefWidth="45.0" text="CPF" />
+            <TableColumn fx:id="colunaRg" prefWidth="75.0" text="RG" />
+            <TableColumn fx:id="colunaData" prefWidth="132.0" text="Data de nascimento" />
+            <TableColumn fx:id="colunaEnd" prefWidth="110.0" text="Endereço" />
+            <TableColumn fx:id="colunaNum" prefWidth="88.0" text="Número" />
+            <TableColumn fx:id="colunaComplem" prefWidth="58.0" text="Complemento" />
+            <TableColumn fx:id="colunaBairro" prefWidth="94.0" text="Bairro" />
+            <TableColumn fx:id="colunaCep" prefWidth="107.0" text="CEP" />
+            <TableColumn fx:id="colunaCidade" prefWidth="99.0" text="Cidade" />
+            <TableColumn fx:id="colunaCelular" prefWidth="126.0" text="Celular" />
+            <TableColumn fx:id="colunaEmail" prefWidth="126.0" text="E-mail" />
+        </columns>
+      </TableView>
+      <Button layoutX="425.0" layoutY="859.0" mnemonicParsing="false" onAction="#acaoEditar" prefHeight="30.0" prefWidth="175.0" text="Editar" textFill="#110c9c" />
+      <Button layoutX="673.0" layoutY="859.0" mnemonicParsing="false" onAction="#acaoExcluir" prefHeight="30.0" prefWidth="185.0" text="Excluir" textFill="#ff0d00" />
+      <Button layoutX="1122.0" layoutY="856.0" mnemonicParsing="false" onAction="#acaoSair" prefHeight="30.0" prefWidth="175.0" text="Sair" />
+   </children>
+</AnchorPane>
