@@ -2,30 +2,27 @@ package registros;
 
 /**
  *
-  * @author rafag
+  * @author rafael_Ferraz
  */
 public class ItemAgenda {
 
     public int id;
     public String nome;
     public String email;
-    public String end;
-    public String complem;
+    public String endereco;
+    public String complemento;
     public String celular;
     public String bairro;
     public String cep;
     public String cidade;
     public String rg;
     public String cpf;
-    public String num;
-    public String complemento;
-    public String codigo;
-
-
+    public String numero;
+    public String data;
+  
     public String getNome() {
         return nome;
     }
-
     public String getCelular() {
         return celular;
     }
@@ -33,10 +30,10 @@ public class ItemAgenda {
         return email;
     }
     public String getEndereco() {
-        return end;
+        return endereco;
     }
-    public String getComplemento() {
-        return complem;
+    public String getCompleme() {
+        return complemento;
     }
     public String getCidade() {
         return cidade;
@@ -51,9 +48,12 @@ public class ItemAgenda {
         return cpf;
     }
     public String getNum() {
-        return num;
+        return numero;
     }
-               public String getCod () {
-        return codigo;
+         public String getData() {
+        return data;
     }
+public String getCep(){
+        return cep;
+} 
 }
