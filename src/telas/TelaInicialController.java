@@ -14,15 +14,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import registros.ItemAgenda;
+import registros_Cadastro.ItemAgendaCadastro;
 
 /**
  * FXML Controller class
  *
- * @author rafael_Ferraz
+ * @author rafag
  */
 public class TelaInicialController implements Initializable {
-
+  
     @FXML
     private AnchorPane editPesquisar;
     @FXML
@@ -51,48 +51,48 @@ public class TelaInicialController implements Initializable {
     private TextField editEmail;
     @FXML
     private TextField editNomePesquisar;
-    
+
     @FXML
-    private TableView<ItemAgenda> tabela;
+    private TableView<ItemAgendaCadastro> tabela;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaNome;
+    private TableColumn<ItemAgendaCadastro, String> colunaNome;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaCpf;
+    private TableColumn<ItemAgendaCadastro, String> colunaCpf;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaRg;
+    private TableColumn<ItemAgendaCadastro, String> colunaRg;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaDat;
+    private TableColumn<ItemAgendaCadastro, String> colunaDat;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaEnd;
+    private TableColumn<ItemAgendaCadastro, String> colunaEnd;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaNum;
+    private TableColumn<ItemAgendaCadastro, String> colunaNum;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaCompleme;
+    private TableColumn<ItemAgendaCadastro, String> colunaCompleme;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaBairro;
+    private TableColumn<ItemAgendaCadastro, String> colunaBairro;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaCep;
+    private TableColumn<ItemAgendaCadastro, String> colunaCep;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaCidade;
+    private TableColumn<ItemAgendaCadastro, String> colunaCidade;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaCelular;
+    private TableColumn<ItemAgendaCadastro, String> colunaCelular;
     @FXML
-    private TableColumn<ItemAgenda, String> colunaEmail;
-   
-    List<ItemAgenda> ListaAgenda = new ArrayList(); 
+    private TableColumn<ItemAgendaCadastro, String> colunaEmail;
+
+    List<ItemAgendaCadastro> ListaAgenda = new ArrayList();
     int totalItens = 0;
     boolean modoEdicao = false;
-    ItemAgenda itemAgendaEdicao = null;
-      
+    ItemAgendaCadastro itemAgendaEdicao = null;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      colunaNome.setCellValueFactory(new PropertyValueFactory("nome"));
+        colunaNome.setCellValueFactory(new PropertyValueFactory("nome"));
         colunaCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
         colunaRg.setCellValueFactory(new PropertyValueFactory("rg"));
-       colunaDat.setCellValueFactory(new PropertyValueFactory("data"));
+        colunaDat.setCellValueFactory(new PropertyValueFactory("data"));
         colunaEnd.setCellValueFactory(new PropertyValueFactory("endereco"));
         colunaNum.setCellValueFactory(new PropertyValueFactory("numero"));
         colunaCompleme.setCellValueFactory(new PropertyValueFactory("complemento"));
@@ -101,7 +101,7 @@ public class TelaInicialController implements Initializable {
         colunaCidade.setCellValueFactory(new PropertyValueFactory("cidade"));
         colunaCelular.setCellValueFactory(new PropertyValueFactory("celular"));
         colunaEmail.setCellValueFactory(new PropertyValueFactory("email"));
-    }    
+    }
 
     @FXML
     private void acaoSalvar(ActionEvent event) {
@@ -110,8 +110,8 @@ public class TelaInicialController implements Initializable {
         alert.setHeaderText("");
         alert.setContentText("Salvo com sucesso!");
         alert.showAndWait();
-     
-        ItemAgenda item = new ItemAgenda();
+
+        ItemAgendaCadastro item = new ItemAgendaCadastro();
         int idItem = 1;
         if (idItem == 1) {
             idItem++;
@@ -150,7 +150,7 @@ public class TelaInicialController implements Initializable {
         editCel.clear();
         editEmail.clear();
         editData.clear();
-		    
+
 
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Cancelamento");
@@ -163,27 +163,26 @@ public class TelaInicialController implements Initializable {
     private void acaoPesquisar(ActionEvent event) {
                 if ( tabela != ListaAgenda  ){
 
-        Alert alert = new Alert(Alert.AlertType.WARNING);  
-        alert.setTitle("Verificando o armazenamento ...");
-        alert.setHeaderText("");
-        alert.setContentText("Aguarde um momento!");
-        alert.showAndWait();
-    tabela.setItems(FXCollections.observableArrayList(ListaAgenda));
-          
-        
-        } else if ( ListaAgenda== tabela  ){
-         Alert alert = new Alert(Alert.AlertType.INFORMATION); 
-        alert.setTitle("Verificando o armazenamento ...");
-        alert.setHeaderText("");
-        alert.setContentText("Nome não encontrado!");
-        alert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Verificando o armazenamento ...");
+            alert.setHeaderText("");
+            alert.setContentText("Aguarde um momento!");
+            alert.showAndWait();
+            tabela.setItems(FXCollections.observableArrayList(ListaAgenda));
+
+        } else if (ListaAgenda == tabela) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Verificando o armazenamento ...");
+            alert.setHeaderText("");
+            alert.setContentText("Nome não encontrado!");
+            alert.showAndWait();
         }
     }
 
     @FXML
     private void acaoEditar(ActionEvent event) {
-         ItemAgenda itemSelecionado = tabela.getSelectionModel().getSelectedItem();
-           Alert alert = new Alert(Alert.AlertType.INFORMATION);   
+        ItemAgendaCadastro itemSelecionado = tabela.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Pesquisando ...");
         alert.setHeaderText("Comece a edição! ");
         alert.showAndWait();
@@ -195,7 +194,7 @@ public class TelaInicialController implements Initializable {
 
             editNome.setText(itemSelecionado.nome);
             editCpf.setText(itemSelecionado.cpf);
-             editRg.setText(itemSelecionado.rg);
+            editRg.setText(itemSelecionado.rg);
             editCel.setText(itemSelecionado.celular);
             editEnd.setText(itemSelecionado.endereco);
             editEmail.setText(itemSelecionado.email);
@@ -205,22 +204,22 @@ public class TelaInicialController implements Initializable {
             editCidade.setText(itemSelecionado.cidade);
             editData.setText(itemSelecionado.data);
             editNum.setText(itemSelecionado.numero);
-   
-            }
+
+        }
     }
 
     @FXML
     private void acaoExcluir(ActionEvent event) {
-        ItemAgenda itemSelecionado = tabela.getSelectionModel().getSelectedItem();
-            
-            for (int i = 0; i < ListaAgenda.size(); i++) {
-            ItemAgenda itemLista = ListaAgenda.get(i);
+        ItemAgendaCadastro itemSelecionado = tabela.getSelectionModel().getSelectedItem();
+
+        for (int i = 0; i < ListaAgenda.size(); i++) {
+            ItemAgendaCadastro itemLista = ListaAgenda.get(i);
             if (itemLista.id == itemSelecionado.id) {
                 ListaAgenda.remove(i);
                 break;
             }
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);   
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Validação");
         alert.setHeaderText("Excluido com sucesso! ");
         alert.setContentText("Pesquise para confirmar a exclusão!");
@@ -229,8 +228,8 @@ public class TelaInicialController implements Initializable {
     }
 
     @FXML
-    private void acaoSair(ActionEvent event) {       
-          System.exit(0);
+    private void acaoSair(ActionEvent event) {
+        System.exit(0);
     }
-    
+
 }

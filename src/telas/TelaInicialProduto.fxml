@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="Ecommerce" fx:id="editPesq" prefHeight="705.0" prefWidth="1059.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="telas.TelaInicialFXMLController">
+    <children>
+      <Text layoutX="568.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="JUSTIFY" wrappingWidth="156.1904296875">
+         <font>
+            <Font size="17.0" />
+         </font>
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startY="1.0">
+               <stops>
+                  <Stop color="#00055c" />
+                  <Stop color="#000dc3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <Text boundsType="LOGICAL_VERTICAL_CENTER" fontSmoothingType="LCD" layoutX="520.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de produtos" textAlignment="JUSTIFY" textOrigin="CENTER" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="477.171875" AnchorPane.topAnchor="43.0">
+         <font>
+            <Font name="System Bold Italic" size="22.0" />
+         </font>
+         <stroke>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#5c0000" />
+                  <Stop color="#d03434" offset="0.08970099667774085" />
+                  <Stop color="#610b0b" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </stroke>
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startY="1.0">
+               <stops>
+                  <Stop color="#00055c" />
+                  <Stop color="#a34834" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <Text layoutX="14.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações do produto" textAlignment="JUSTIFY" wrappingWidth="188.0">
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startY="1.0">
+               <stops>
+                  <Stop color="#00055c" />
+                  <Stop color="#000dc3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <TextField fx:id="editNome" layoutX="14.0" layoutY="112.0" prefHeight="30.0" prefWidth="264.0" promptText="Nome do produto:" snapToPixel="false">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="editCodBarras" layoutX="289.0" layoutY="112.0" prefHeight="30.0" prefWidth="278.0" promptText="Código de barras: " />
+      <TextField fx:id="editAutor" layoutX="577.0" layoutY="112.0" prefHeight="30.0" prefWidth="534.0" promptText="Autor:" />
+      <TextField fx:id="editEdit" layoutX="578.0" layoutY="159.0" prefHeight="30.0" prefWidth="534.0" promptText="Editora:" snapToPixel="false">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="editDesc" alignment="TOP_LEFT" layoutX="14.0" layoutY="200.0" prefHeight="93.0" prefWidth="1101.0" promptText="Descrição do produto:" />
+      <Button layoutX="446.0" layoutY="317.0" mnemonicParsing="false" onAction="#editSalvar" prefHeight="38.0" prefWidth="83.0" text="Salvar" textFill="#32abf2" />
+      <Button layoutX="555.0" layoutY="317.0" mnemonicParsing="false" onAction="#editLimpar" prefHeight="38.0" prefWidth="83.0" text="Limpar" textFill="#ff5f08" />
+      <Text layoutX="36.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Armazenamento de dados" textAlignment="JUSTIFY" wrappingWidth="220.279296875">
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startY="1.0">
+               <stops>
+                  <Stop color="#00055c" />
+                  <Stop color="#000dc3" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Button alignment="BASELINE_CENTER" contentDisplay="TOP" layoutX="631.0" layoutY="379.0" mnemonicParsing="false" onAction="#editPesquisar" prefHeight="23.0" prefWidth="124.0" text="Pesquisar" textAlignment="RIGHT">
+         <textFill>
+            <RadialGradient centerX="0.5338983050847458" cycleMethod="REFLECT" focusAngle="-82.91" focusDistance="1.0" radius="1.0">
+               <stops>
+                  <Stop color="#27718042" />
+                  <Stop color="#00000042" offset="0.8531218202547474" />
+                  <Stop color="#68bc9d42" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Button>
+      <TextField fx:id="editNomePesquisar" alignment="CENTER" cacheHint="SPEED" layoutX="366.0" layoutY="379.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="243.0" promptText="Digite o nome que deseja buscar " AnchorPane.rightAnchor="608.451171875">
+         <opaqueInsets>
+            <Insets left="20.0" />
+         </opaqueInsets>
+         <effect>
+            <Lighting bumpInput="$null" diffuseConstant="1.27">
+               <light>
+                  <Light.Distant color="#fafafa" />
+               </light>
+            </Lighting>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+      </TextField>
+      <TableView fx:id="tabela" layoutX="31.0" layoutY="430.0" prefHeight="197.0" prefWidth="1080.0">
+        <columns>
+          <TableColumn fx:id="colunaNome" prefWidth="148.0" text="Nome" />
+          <TableColumn fx:id="colunaBarras" prefWidth="197.0" text="Código de barras" />
+            <TableColumn fx:id="colunaAutor" maxWidth="1000.0" prefWidth="153.0" text="Autor" />
+            <TableColumn fx:id="colunaValor" minWidth="0.0" prefWidth="82.0" text="Valor" />
+            <TableColumn fx:id="colunaQuant" minWidth="0.0" prefWidth="185.0" text="Quantidade" />
+            <TableColumn fx:id="colunaDescricao" minWidth="0.0" prefWidth="149.0" text="Descrição do produto" />
+            <TableColumn fx:id="colunaEditora" minWidth="0.0" prefWidth="169.0" text="Editora" />
+            
+        </columns>
+      </TableView>
+      <Button layoutX="378.0" layoutY="679.0" mnemonicParsing="false" onAction="#editEditar" prefHeight="32.0" prefWidth="124.0" text="Editar" />
+      <Button layoutX="534.0" layoutY="680.0" mnemonicParsing="false" onAction="#editExcluir" prefHeight="30.0" prefWidth="124.0" text="Excluir" />
+      <Button layoutX="805.0" layoutY="676.0" mnemonicParsing="false" onAction="#editSair" prefHeight="38.0" prefWidth="98.0" text="Sair" />
+      <TextField fx:id="editValor" layoutX="14.0" layoutY="159.0" prefHeight="30.0" prefWidth="264.0" promptText="Valor:" snapToPixel="false">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="editQuant" layoutX="289.0" layoutY="159.0" prefHeight="30.0" prefWidth="278.0" promptText="Quantidade:" snapToPixel="false">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </TextField>
+   </children>
+    
+</AnchorPane>

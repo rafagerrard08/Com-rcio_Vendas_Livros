@@ -1,59 +1,43 @@
 package registros;
 
 /**
- *
-  * @author rafael_Ferraz
+ * @author Thiago Gilabel de Souza
  */
 public class ItemAgenda {
 
     public int id;
     public String nome;
-    public String email;
-    public String endereco;
-    public String complemento;
-    public String celular;
-    public String bairro;
-    public String cep;
-    public String cidade;
-    public String rg;
-    public String cpf;
-    public String numero;
-    public String data;
-  
+   public String descricao;
+   public String codbarras;
+    public String autor;
+    public String quantidade;
+    public String valor;
+    public String editora;
+
     public String getNome() {
         return nome;
     }
-    public String getCelular() {
-        return celular;
+
+    public String getCodbarras() {
+        return codbarras;
     }
-    public String getEmail() {
-        return email;
+
+    public String getQuantidade() {
+        return quantidade;
     }
-    public String getEndereco() {
-        return endereco;
+
+    public String getDescricao() {
+        return descricao;
     }
-    public String getCompleme() {
-        return complemento;
+    public String getValor() {
+        return valor;
     }
-    public String getCidade() {
-        return cidade;
+
+    public String getEditora() {
+        return editora;
     }
-    public String getBairro() {
-        return  bairro;
-    }
-    public String getRg() {
-        return rg;
-    }
-    public String getCpf() {
-        return cpf;
-    }
-    public String getNum() {
-        return numero;
-    }
-         public String getData() {
-        return data;
-    }
-public String getCep(){
-        return cep;
-} 
+
+    public String getAutor() {
+        return autor;
+}
 }

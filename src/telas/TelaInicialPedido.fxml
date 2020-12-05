@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="telas.TelaInicialPedidoController">
+   <children>
+      <Button layoutX="667.0" layoutY="735.0" mnemonicParsing="false" onAction="#acaoSair" prefHeight="30.0" prefWidth="73.0" text="Sair" />
+      <Button layoutX="402.0" layoutY="735.0" mnemonicParsing="false" onAction="#acaoExcluir" prefHeight="30.0" prefWidth="121.0" text="Excluir pedido" />
+      <Button layoutX="244.0" layoutY="735.0" mnemonicParsing="false" onAction="#acaoEditar" prefHeight="30.0" prefWidth="121.0" text="Editar" />
+      <TableView fx:id="tabela" layoutX="35.0" layoutY="537.0" prefHeight="182.0" prefWidth="704.0">
+         <columns>
+            <TableColumn fx:id="colunaNumPed" prefWidth="99.0" text="Nº pedido" />
+            <TableColumn fx:id="colunaCpf" prefWidth="69.0" text="CPF" />
+            <TableColumn fx:id="colunaValor" prefWidth="92.0" text="Valor pedido" />
+            <TableColumn fx:id="colunaData" prefWidth="94.0" text="Data compra" />
+            <TableColumn fx:id="colunaQuant" prefWidth="117.0" text="Quantidade pedidos" />
+            <TableColumn fx:id="colunaValorItens" prefWidth="124.0" text="Valores dos itens" />
+            <TableColumn fx:id="colunaLivro" prefWidth="108.0" text="Código do livro" />
+         </columns>
+      </TableView>
+      <Text fontSmoothingType="LCD" layoutX="46.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Armazenamento dos pedidos" textAlignment="RIGHT">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9806763285024155">
+               <stops>
+                  <Stop color="RED" />
+                  <Stop color="#1e0101" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="editPesquisar" layoutX="406.0" layoutY="498.0" prefHeight="27.0" prefWidth="234.0" promptText="Digite o CPF para pesquisa" />
+      <Button layoutX="658.0" layoutY="498.0" mnemonicParsing="false" onAction="#acaoPesquisar" text="Pesquisar" />
+      <Button layoutX="391.0" layoutY="422.0" mnemonicParsing="false" onAction="#acaoApagar" prefHeight="30.0" prefWidth="129.0" text="Apagar pedido" />
+      <Button layoutX="247.0" layoutY="422.0" mnemonicParsing="false" onAction="#acaoconfirmar" text="Confirmar pedido" />
+      <TextField fx:id="editValorItens" layoutX="514.0" layoutY="354.0" prefHeight="30.0" prefWidth="204.0" promptText="Valores dos itens" />
+      <TextField fx:id="editQuant" layoutX="304.0" layoutY="354.0" prefHeight="30.0" prefWidth="190.0" promptText="Quantidade do pedido" />
+      <TextField fx:id="editCodLivro" layoutX="24.0" layoutY="354.0" prefHeight="30.0" prefWidth="261.0" promptText="Código do livro" />
+      <Text fontSmoothingType="LCD" layoutX="35.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Validação" textAlignment="RIGHT">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <Text fontSmoothingType="LCD" layoutX="35.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pedido">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="editData" layoutX="304.0" layoutY="258.0" prefHeight="30.0" prefWidth="413.0" promptText="Data da compra" />
+      <TextField fx:id="editValor" layoutX="31.0" layoutY="258.0" prefHeight="30.0" prefWidth="255.0" promptText="Valor do pedido" />
+      <TextField fx:id="editCpf" layoutX="304.0" layoutY="196.0" prefHeight="30.0" prefWidth="413.0" promptText="CPF" />
+      <TextField fx:id="editPedido" layoutX="31.0" layoutY="196.0" prefHeight="30.0" prefWidth="255.0" promptText="Número do pedido" />
+      <Text fontSmoothingType="LCD" layoutX="303.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tela de pedido" textAlignment="RIGHT">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9806763285024155">
+               <stops>
+                  <Stop color="RED" />
+                  <Stop color="#511add" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
