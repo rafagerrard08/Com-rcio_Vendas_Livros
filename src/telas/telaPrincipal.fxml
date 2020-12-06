@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="388.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="telas.TelaPrincipalController">
+   <children>
+      <Button layoutX="79.0" layoutY="92.0" mnemonicParsing="false" onAction="#acaoCadastro" prefHeight="30.0" prefWidth="131.0" text="CADASTRO" />
+      <Button layoutX="244.0" layoutY="92.0" mnemonicParsing="false" onAction="#acaoProduto" prefHeight="30.0" prefWidth="112.0" text="PRODUTO" />
+      <Button layoutX="402.0" layoutY="92.0" mnemonicParsing="false" onAction="#acaoPedido" prefHeight="30.0" prefWidth="112.0" text="PEDIDO" />
+      <Text layoutX="216.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU DE TELAS" wrappingWidth="179.787109375">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#30c2bc" offset="0.46179401993355484" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+   </children>
+</AnchorPane>
