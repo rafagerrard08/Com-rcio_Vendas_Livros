@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `projetopi`.`Cliente` (
   `CPF` VARCHAR(14) NOT NULL,
   `RG` VARCHAR(12) NULL,
   `Nome` VARCHAR(255) NULL,
-  `Data_nascimento` VARCHAR(255) NULL,
+  `Data_nascimento` date NULL,
   `Tel` VARCHAR(255) NULL,
   `Email` VARCHAR(255) NULL,
   `Rua` VARCHAR(45) NULL,
@@ -60,7 +60,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `projetopi`.`pedido` (
   `num_pedido` INT NOT NULL AUTO_INCREMENT,
   `valor_pedido` DECIMAL(10,2) NULL,
-  `Data_Compra` VARCHAR(255) NULL,
+  `Data_Compra` date NULL,
   `qtde` VARCHAR(45) NULL,
   `desc_produto` VARCHAR(45) NULL,
   `Cliente_id_cliente` INT NOT NULL,
