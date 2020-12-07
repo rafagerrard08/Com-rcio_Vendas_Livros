@@ -4,17 +4,20 @@ import JDBC.ItemAgendaDAO;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import registros.ItemAgenda;
 import registros_Pedido.ItemAgendaPedido;
 
 /**
@@ -37,6 +40,7 @@ public class TelaInicialPedidoController implements Initializable {
     private TextField editCodLivro;
     @FXML
     private TextField editQuant;
+    @FXML
     private TextField editDescProduto;
     @FXML
     private TableView<ItemAgendaPedido> tabela;
@@ -69,7 +73,7 @@ public class TelaInicialPedidoController implements Initializable {
         colunaCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
         colunaValor.setCellValueFactory(new PropertyValueFactory("valor"));
         colunaData.setCellValueFactory(new PropertyValueFactory("data"));
-        colunaLivro.setCellValueFactory(new PropertyValueFactory("livro"));
+        colunaLivro.setCellValueFactory(new PropertyValueFactory("codlivro"));
         colunaQuant.setCellValueFactory(new PropertyValueFactory("quantidade"));
         colunaDescProduto.setCellValueFactory(new PropertyValueFactory("descricao"));
     }
@@ -85,15 +89,18 @@ public class TelaInicialPedidoController implements Initializable {
         ItemAgendaPedido item = new ItemAgendaPedido();
         
         
-        item.numeroPedido = editPedido.getText();
+        item.numeroPedido = Integer.parseInt( editPedido.getText());
         item.cpf = editCpf.getText();
         item.data = editData.getText();
         item.quantidade = Integer.parseInt(editQuant.getText());
         item.descricao = editDescProduto.getText();
         item.valor =Double.parseDouble( editValor.getText());
-        item.livro = editCodLivro.getText();
-         
+        item.codlivro = Integer.parseInt(editCodLivro.getText());
+         if(modoEdicao == false){
         ItemAgendaDAO.inserirPedido(item);
+         }else{
+         ItemAgendaDAO.editarPedido(item);
+         }
     }
 
     @FXML
@@ -112,11 +119,25 @@ public class TelaInicialPedidoController implements Initializable {
     private void acaoExcluir(ActionEvent event) {
         ItemAgendaPedido itemSelecionado = tabela.getSelectionModel().getSelectedItem();
 
-        for (int i = 0; i < ListaAgenda.size(); i++) {
-            ItemAgendaPedido itemLista = ListaAgenda.get(i);
-            if (itemLista.id == itemSelecionado.id) {
-                ListaAgenda.remove(i);
-                break;
+        if(itemSelecionado != null){
+             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirma remoção");
+            alert.setHeaderText("Confirmação de remoção ");
+            alert.setContentText("Remover o pedido" + itemSelecionado.numeroPedido);
+            Optional<ButtonType> resultado = alert.showAndWait();
+            if(resultado.get() == ButtonType.OK){
+                try{
+                ItemAgendaDAO.excluirPedido(itemSelecionado.numeroPedido);
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setTitle("Validação");
+                alert2.setHeaderText("Excluido com sucesso! ");
+                alert2.setContentText("Pesquise para confirmar a exclusão!");
+                alert2.showAndWait();
+                }catch(Exception e){
+                        e.printStackTrace();
+                       
+                }
+                
             }
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -124,7 +145,6 @@ public class TelaInicialPedidoController implements Initializable {
         alert.setHeaderText("Excluido com sucesso! ");
         alert.setContentText("Pesquise para confirmar a exclusão!");
         alert.showAndWait();
-
     }
 
     @FXML
@@ -143,9 +163,9 @@ public class TelaInicialPedidoController implements Initializable {
 
             editValor.setText(itemSelecionado.valor.toString());
             editCpf.setText(itemSelecionado.cpf);
-            editPedido.setText(itemSelecionado.numeroPedido);
+            editPedido.setText(itemSelecionado.numeroPedido.toString());
             editData.setText(itemSelecionado.data);
-            editCodLivro.setText(itemSelecionado.livro);
+            editCodLivro.setText(itemSelecionado.codlivro.toString());
             editQuant.setText(itemSelecionado.quantidade.toString());
             editDescProduto.setText(itemSelecionado.descricao);
         }
@@ -154,21 +174,53 @@ public class TelaInicialPedidoController implements Initializable {
 
     @FXML
     private void acaoPesquisar(ActionEvent event) {
-        if (tabela != ListaAgenda) {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Verificando o armazenamento ...");
-            alert.setHeaderText("");
-            alert.setContentText("Aguarde um momento!");
-            alert.showAndWait();
-            tabela.setItems(FXCollections.observableArrayList(ListaAgenda));
-
-        } else if (ListaAgenda == tabela) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Verificando o armazenamento ...");
-            alert.setHeaderText("");
-            alert.setContentText("Nome não encontrado!");
-            alert.showAndWait();
+        if (editPesquisar.getText().equals("")) {
+            try {
+                List<ItemAgendaPedido> resultado = ItemAgendaDAO.listarPedidos();
+                tabela.setItems(FXCollections.observableArrayList(resultado));
+                tabela.refresh();
+                
+              /*  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Verificando o armazenamento ...");
+                alert.setHeaderText("");
+                alert.setContentText("Dados  encontrados!");
+                alert.showAndWait();
+             */   
+            } catch (Exception e) {
+                e.printStackTrace();
+                  Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Verificando o armazenamento ...");
+                alert.setHeaderText("");
+                alert.setContentText("Nenhum dado encontrado");
+            }
+           
+            
+        }else{
+            try {
+                List<ItemAgendaPedido> resultado = ItemAgendaDAO.pesquisarPedido(Integer.parseInt(editPesquisar.getText()));
+                tabela.setItems(FXCollections.observableArrayList(resultado));
+                tabela.refresh();
+               if(resultado.isEmpty()){
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Verificando o armazenamento ...");
+                alert.setHeaderText("");
+                alert.setContentText("Nenhum resultado encontrado");
+                alert.showAndWait();
+               
+               }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Verificando o armazenamento ...");
+                alert.setHeaderText("");
+                alert.setContentText("Dados encontrados!");
+                alert.showAndWait();
+               }
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Verificando o armazenamento ...");
+                alert.setHeaderText("");
+                alert.setContentText("Nenhum dado encontrado");
+                e.printStackTrace(); 
+            }
         }
     }
 

@@ -76,13 +76,13 @@ public class ItemAgendaDAO {
         try {
             PreparedStatement comando = conexao.prepareStatement(sql);
 
-            comando.setString(1, item.numeroPedido);
+            comando.setInt(1, item.numeroPedido);
             comando.setBigDecimal(2, BigDecimal.valueOf(item.valor));
             comando.setDate(3,java. sql.Date.valueOf(item.data));
             comando.setInt(4,item.quantidade);
             comando.setString(5, item.descricao);
             comando.setString(6,item.cpf);
-            comando.setString(7,item.livro);
+            comando.setInt(7,item.codlivro);
             
                     
             
@@ -197,13 +197,13 @@ public class ItemAgendaDAO {
             while (dados.next()){
                 ItemAgendaPedido item = new ItemAgendaPedido();
                 
-                String num_pedido = dados.getString("num_pedido");
-                String valor_pedido = dados.getString("valor_pedido");
-                Date  Data_Compra = dados.getDate("Data_Compra");
-                String qtde = dados.getString("qtde");
-                String desc_produto = dados.getString("Qtd_livro");
-                String cod_livro = dados.getString("cod_livro");
-                String cpf = dados.getString("CPF");
+               item.numeroPedido = dados.getInt("num_pedido");
+                item.valor= dados.getDouble("valor_pedido");
+                item.data = dados.getString("Data_Compra".toString());
+                item.quantidade = dados.getInt("qtde");
+                item.descricao = dados.getString("desc_produto");
+                item.codlivro = dados.getInt("Livro_Cod_livro");
+                item.cpf = dados.getString("Cliente_CPF");
                 
                 listarPedido.add(item);
                 
@@ -283,6 +283,39 @@ public class ItemAgendaDAO {
         }
         return listarLivros;
     }
+    
+     public  static   List<ItemAgendaPedido> pesquisarPedido(Integer NumPedido) throws Exception {
+        String sql = "SELECT * FROM pedido where num_pedido LIKE ?";
+                
+        Connection conexao = ConnectionUtils.getConnection();
+        
+        List<ItemAgendaPedido> listarPedidos = new ArrayList();
+        
+        try {
+            PreparedStatement comando = conexao.prepareStatement (sql);
+            comando.setString(1,"%"+ NumPedido +"%");
+            ResultSet dados = comando.executeQuery();
+            
+            while (dados.next()){
+                 
+                ItemAgendaPedido item = new ItemAgendaPedido();
+                
+               item.numeroPedido = dados.getInt("num_pedido");
+                item.valor= dados.getDouble("valor_pedido");
+                item.data = dados.getString("Data_Compra".toString());
+                item.quantidade = dados.getInt("qtde");
+                item.descricao = dados.getString("desc_produto");
+                item.codlivro = dados.getInt("Livro_Cod_livro");
+                item.cpf = dados.getString("Cliente_CPF");
+                
+                listarPedidos.add(item);
+                }
+        }
+        finally {
+            conexao.close();
+        }
+        return listarPedidos;
+    }
        
     public static List <ItemAgendaCadastro>excluirCliente(String cpf) throws Exception {
 
@@ -307,17 +340,16 @@ public class ItemAgendaDAO {
         }
         return listarClientes;
     }
-     static void excluirPedido() throws Exception {
+    public static  List <ItemAgendaPedido>excluirPedido(Integer NumPedido) throws Exception {
 
-        String sql = "DELETE FROM pedido  WHERE num_pedido = ?"
-                ;
+        String sql = "DELETE FROM pedido  WHERE num_pedido = ?";
 
         Connection conexao = ConnectionUtils.getConnection();
-        
+         List <ItemAgendaPedido>listarPedidos = new ArrayList();
         try {
             PreparedStatement comando = conexao.prepareStatement(sql);
 
-            comando.setInt(1,1);
+            comando.setInt(1,NumPedido);
             
             
 
@@ -327,6 +359,7 @@ public class ItemAgendaDAO {
         finally {
             conexao.close();
         }
+        return listarPedidos;
     }
      public static List <ItemAgenda>excluirLivro(Integer CodLivro) throws Exception {
 
@@ -351,6 +384,7 @@ public class ItemAgendaDAO {
         }
         return listarLivro;
     }
+     
 public static  void editarCliente (ItemAgendaCadastro item) throws Exception {
     
 String sql = "UPDATE Cliente SET RG= ? , nome= ? , Data_nascimento= ? ,  Tel= ?,   Email= ? ,  Rua= ? ,  complemento= ? , Numero= ?,Cep= ?,Cidade= ?,Bairro= ? "  + " WHERE cpf = ? ";
@@ -399,6 +433,31 @@ try {
             comando.setInt(9, item.codlivro);
             
            
+            comando.execute();
+}finally{
+    conexao.close();
+}
+
+} 
+
+public static  void editarPedido (ItemAgendaPedido item) throws Exception {
+    
+String sql = "UPDATE pedido SET  Cliente_CPF = ? , Livro_Cod_livro = ?,  valor_pedido = ?, qtde = ? , desc_produto = ?, Data_Compra = ?  "  + "  WHERE num_pedido = ? ";
+
+Connection conexao = ConnectionUtils.getConnection ();
+
+try {
+          PreparedStatement comando = conexao.prepareStatement(sql); 
+
+           
+            comando.setString(1, item.cpf);
+            comando.setInt(2,item.codlivro);
+            comando.setDouble(3, item.valor);
+            comando.setInt(4,item.quantidade);
+            comando.setString(5, item.descricao);
+            comando.setDate(6, Date.valueOf(item.data));
+            comando.setInt(7, item.numeroPedido);
+            
             comando.execute();
 }finally{
     conexao.close();
