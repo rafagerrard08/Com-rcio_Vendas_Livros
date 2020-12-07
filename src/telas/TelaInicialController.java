@@ -14,6 +14,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import JDBC.ItemAgendaDAO;
+import java.util.Optional;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import registros_Cadastro.ItemAgendaCadastro;
 
 /**
@@ -104,7 +108,7 @@ public class TelaInicialController implements Initializable {
     }
 
     @FXML
-    private void acaoSalvar(ActionEvent event) {
+    private void acaoSalvar(ActionEvent event) throws Exception {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Validação");
         alert.setHeaderText("");
@@ -112,7 +116,26 @@ public class TelaInicialController implements Initializable {
         alert.showAndWait();
 
         ItemAgendaCadastro item = new ItemAgendaCadastro();
-        int idItem = 1;
+        
+        item.numero = Integer.parseInt(editNum.getText());
+        item.nome = editNome.getText();
+        item.cpf = editCpf.getText();
+        item.rg = editRg.getText();
+        item.endereco = editEnd.getText();
+        item.complemento = editCompleme.getText();
+        item.bairro = editBairro.getText();
+        item.cep = editCep.getText();
+        item.cidade = editCidade.getText();
+        item.celular = editCel.getText();
+        item.email = editEmail.getText();
+        item.data = editData.getText();
+        
+        if(modoEdicao == false){
+        ItemAgendaDAO.inserirCliente(item);
+        }else{
+        ItemAgendaDAO.editarCliente(item);
+        }
+        /*int idItem = 1;
         if (idItem == 1) {
             idItem++;
         }
@@ -133,7 +156,7 @@ public class TelaInicialController implements Initializable {
 
         totalItens++;
 
-        ListaAgenda.add(item);
+        ListaAgenda.add(item);*/
     }
 
     @FXML
@@ -160,22 +183,54 @@ public class TelaInicialController implements Initializable {
     }
 
     @FXML
-    private void acaoPesquisar(ActionEvent event) {
-                if ( tabela != ListaAgenda  ){
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Verificando o armazenamento ...");
-            alert.setHeaderText("");
-            alert.setContentText("Aguarde um momento!");
-            alert.showAndWait();
-            tabela.setItems(FXCollections.observableArrayList(ListaAgenda));
-
-        } else if (ListaAgenda == tabela) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Verificando o armazenamento ...");
-            alert.setHeaderText("");
-            alert.setContentText("Nome não encontrado!");
-            alert.showAndWait();
+    private void acaoPesquisar(ActionEvent event) throws Exception {
+        if (editNomePesquisar.getText().equals("")) {
+            try {
+                List<ItemAgendaCadastro> resultado = ItemAgendaDAO.listarCliente();
+                tabela.setItems(FXCollections.observableArrayList(resultado));
+                tabela.refresh();
+                
+              /*  Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Verificando o armazenamento ...");
+                alert.setHeaderText("");
+                alert.setContentText("Dados  encontrados!");
+                alert.showAndWait();
+             */   
+            } catch (Exception e) {
+                e.printStackTrace();
+                  Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Verificando o armazenamento ...");
+                alert.setHeaderText("");
+                alert.setContentText("Nenhum dado encontrado");
+            }
+           
+            
+        }else{
+            try {
+                List<ItemAgendaCadastro> resultado = ItemAgendaDAO.pesquisarCliente(editNomePesquisar.getText());
+                tabela.setItems(FXCollections.observableArrayList(resultado));
+                tabela.refresh();
+               if(resultado.isEmpty()){
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Verificando o armazenamento ...");
+                alert.setHeaderText("");
+                alert.setContentText("Nenhum resultado encontrado");
+                alert.showAndWait();
+               
+               }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Verificando o armazenamento ...");
+                alert.setHeaderText("");
+                alert.setContentText("Dados encontrados!");
+                alert.showAndWait();
+               }
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Verificando o armazenamento ...");
+                alert.setHeaderText("");
+                alert.setContentText("Nenhum dado encontrado");
+                e.printStackTrace(); 
+            }
         }
     }
 
@@ -203,20 +258,43 @@ public class TelaInicialController implements Initializable {
             editCep.setText(itemSelecionado.cep);
             editCidade.setText(itemSelecionado.cidade);
             editData.setText(itemSelecionado.data);
-            editNum.setText(itemSelecionado.numero);
-
+            editNum.setText(itemSelecionado.numero.toString());// Integer.parseInt(editNum.getText())
+            
+            
+            
+           /* try{
+                ItemAgendaDAO.editarCliente(itemSelecionado);
+                
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+*/
         }
     }
 
     @FXML
-    private void acaoExcluir(ActionEvent event) {
+    private void acaoExcluir(ActionEvent event) throws Exception{
         ItemAgendaCadastro itemSelecionado = tabela.getSelectionModel().getSelectedItem();
 
-        for (int i = 0; i < ListaAgenda.size(); i++) {
-            ItemAgendaCadastro itemLista = ListaAgenda.get(i);
-            if (itemLista.id == itemSelecionado.id) {
-                ListaAgenda.remove(i);
-                break;
+        if(itemSelecionado != null){
+             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirma remoção");
+            alert.setHeaderText("Confirmação de remoção ");
+            alert.setContentText("Remover o item" + itemSelecionado.nome);
+            Optional<ButtonType> resultado = alert.showAndWait();
+            if(resultado.get() == ButtonType.OK){
+                try{
+                ItemAgendaDAO.excluirCliente(itemSelecionado.cpf);
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setTitle("Validação");
+                alert2.setHeaderText("Excluido com sucesso! ");
+                alert2.setContentText("Pesquise para confirmar a exclusão!");
+                alert2.showAndWait();
+                }catch(Exception e){
+                        e.printStackTrace();
+                       
+                }
+                
             }
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

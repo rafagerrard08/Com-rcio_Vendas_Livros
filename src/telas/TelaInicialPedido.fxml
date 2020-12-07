@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="telas.TelaInicialPedidoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="789.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="telas.TelaInicialPedidoController">
    <children>
       <Button layoutX="667.0" layoutY="735.0" mnemonicParsing="false" onAction="#acaoSair" prefHeight="30.0" prefWidth="73.0" text="Sair" />
       <Button layoutX="402.0" layoutY="735.0" mnemonicParsing="false" onAction="#acaoExcluir" prefHeight="30.0" prefWidth="121.0" text="Excluir pedido" />
@@ -20,7 +20,7 @@
             <TableColumn fx:id="colunaValor" prefWidth="92.0" text="Valor pedido" />
             <TableColumn fx:id="colunaData" prefWidth="94.0" text="Data compra" />
             <TableColumn fx:id="colunaQuant" prefWidth="117.0" text="Quantidade pedidos" />
-            <TableColumn fx:id="colunaValorItens" prefWidth="124.0" text="Valores dos itens" />
+            <TableColumn fx:id="colunaDescProduto" prefWidth="124.0" text="Descrição do produto" />
             <TableColumn fx:id="colunaLivro" prefWidth="108.0" text="Código do livro" />
          </columns>
       </TableView>
@@ -39,12 +39,12 @@
       </Text>
       <TextField fx:id="editPesquisar" layoutX="406.0" layoutY="498.0" prefHeight="27.0" prefWidth="234.0" promptText="Digite o CPF para pesquisa" />
       <Button layoutX="658.0" layoutY="498.0" mnemonicParsing="false" onAction="#acaoPesquisar" text="Pesquisar" />
-      <Button layoutX="391.0" layoutY="422.0" mnemonicParsing="false" onAction="#acaoApagar" prefHeight="30.0" prefWidth="129.0" text="Apagar pedido" />
-      <Button layoutX="247.0" layoutY="422.0" mnemonicParsing="false" onAction="#acaoconfirmar" text="Confirmar pedido" />
-      <TextField fx:id="editValorItens" layoutX="514.0" layoutY="354.0" prefHeight="30.0" prefWidth="204.0" promptText="Valores dos itens" />
-      <TextField fx:id="editQuant" layoutX="304.0" layoutY="354.0" prefHeight="30.0" prefWidth="190.0" promptText="Quantidade do pedido" />
-      <TextField fx:id="editCodLivro" layoutX="24.0" layoutY="354.0" prefHeight="30.0" prefWidth="261.0" promptText="Código do livro" />
-      <Text fontSmoothingType="LCD" layoutX="35.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Validação" textAlignment="RIGHT">
+      <Button layoutX="382.0" layoutY="422.0" mnemonicParsing="false" onAction="#acaoApagar" prefHeight="30.0" prefWidth="145.0" text="Apagar pedido" />
+      <Button layoutX="201.0" layoutY="422.0" mnemonicParsing="false" onAction="#acaoconfirmar" prefHeight="30.0" prefWidth="139.0" text="Confirmar pedido" />
+      <TextField fx:id="editDescProduto" layoutX="339.0" layoutY="354.0" prefHeight="30.0" prefWidth="387.0" promptText="Descrição do produto" />
+      <TextField fx:id="editQuant" layoutX="164.0" layoutY="354.0" prefHeight="30.0" prefWidth="160.0" promptText="Quantidade do pedido" />
+      <TextField fx:id="editCodLivro" layoutX="24.0" layoutY="354.0" prefHeight="30.0" prefWidth="129.0" promptText="Código do livro" />
+      <Text fontSmoothingType="LCD" layoutX="35.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produto" textAlignment="RIGHT">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -54,10 +54,10 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="editData" layoutX="304.0" layoutY="258.0" prefHeight="30.0" prefWidth="413.0" promptText="Data da compra" />
-      <TextField fx:id="editValor" layoutX="31.0" layoutY="258.0" prefHeight="30.0" prefWidth="255.0" promptText="Valor do pedido" />
-      <TextField fx:id="editCpf" layoutX="304.0" layoutY="196.0" prefHeight="30.0" prefWidth="413.0" promptText="CPF" />
-      <TextField fx:id="editPedido" layoutX="31.0" layoutY="196.0" prefHeight="30.0" prefWidth="255.0" promptText="Número do pedido" />
+      <TextField fx:id="editData" layoutX="345.0" layoutY="258.0" prefHeight="30.0" prefWidth="387.0" promptText="Data da compra" />
+      <TextField fx:id="editValor" layoutX="31.0" layoutY="258.0" prefHeight="30.0" prefWidth="291.0" promptText="Valor do pedido" />
+      <TextField fx:id="editCpf" layoutX="345.0" layoutY="196.0" prefHeight="30.0" prefWidth="387.0" promptText="CPF" />
+      <TextField fx:id="editPedido" layoutX="31.0" layoutY="196.0" prefHeight="30.0" prefWidth="291.0" promptText="Número do pedido" />
       <Text fontSmoothingType="LCD" layoutX="303.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tela de pedido" textAlignment="RIGHT">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9806763285024155">

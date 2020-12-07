@@ -1,5 +1,6 @@
 package telas;
 
+import JDBC.ItemAgendaDAO;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +37,7 @@ public class TelaInicialPedidoController implements Initializable {
     private TextField editCodLivro;
     @FXML
     private TextField editQuant;
-    @FXML
-    private TextField editValorItens;
+    private TextField editDescProduto;
     @FXML
     private TableView<ItemAgendaPedido> tabela;
     @FXML
@@ -52,8 +52,8 @@ public class TelaInicialPedidoController implements Initializable {
     private TableColumn<ItemAgendaPedido, String> colunaLivro;
     @FXML
     private TableColumn<ItemAgendaPedido, String> colunaQuant;
-    @FXML
-    private TableColumn<ItemAgendaPedido, String> colunaValorItens;
+   @FXML
+    private TableColumn<ItemAgendaPedido, String> colunaDescProduto;
 
     List<ItemAgendaPedido> ListaAgenda = new ArrayList();
     int totalItens = 0;
@@ -71,11 +71,11 @@ public class TelaInicialPedidoController implements Initializable {
         colunaData.setCellValueFactory(new PropertyValueFactory("data"));
         colunaLivro.setCellValueFactory(new PropertyValueFactory("livro"));
         colunaQuant.setCellValueFactory(new PropertyValueFactory("quantidade"));
-        colunaValorItens.setCellValueFactory(new PropertyValueFactory("valorItens"));
+        colunaDescProduto.setCellValueFactory(new PropertyValueFactory("descricao"));
     }
 
     @FXML
-    private void acaoconfirmar(ActionEvent event) {
+    private void acaoconfirmar(ActionEvent event) throws Exception {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Validação");
         alert.setHeaderText("");
@@ -83,24 +83,17 @@ public class TelaInicialPedidoController implements Initializable {
         alert.showAndWait();
 
         ItemAgendaPedido item = new ItemAgendaPedido();
-        int idItem = 1;
-        if (idItem == 1) {
-            idItem++;
-        }
-        item.id = idItem;
+        
+        
         item.numeroPedido = editPedido.getText();
         item.cpf = editCpf.getText();
         item.data = editData.getText();
-        item.quantidade = editQuant.getText();
-        item.valorItens = editValorItens.getText();
-        item.valor = editValor.getText();
+        item.quantidade = Integer.parseInt(editQuant.getText());
+        item.descricao = editDescProduto.getText();
+        item.valor =Double.parseDouble( editValor.getText());
         item.livro = editCodLivro.getText();
          
-         item.id = totalItens;
-
-        totalItens++;
-
-        ListaAgenda.add(item);
+        ItemAgendaDAO.inserirPedido(item);
     }
 
     @FXML
@@ -111,7 +104,7 @@ public class TelaInicialPedidoController implements Initializable {
         editData.clear();
         editCodLivro.clear();
         editQuant.clear();
-        editValorItens.clear();
+        editDescProduto.clear();
 
     }
 
@@ -148,13 +141,13 @@ public class TelaInicialPedidoController implements Initializable {
 
             itemAgendaEdicao = itemSelecionado;
 
-            editValor.setText(itemSelecionado.valor);
+            editValor.setText(itemSelecionado.valor.toString());
             editCpf.setText(itemSelecionado.cpf);
             editPedido.setText(itemSelecionado.numeroPedido);
             editData.setText(itemSelecionado.data);
             editCodLivro.setText(itemSelecionado.livro);
-            editQuant.setText(itemSelecionado.quantidade);
-            editValorItens.setText(itemSelecionado.valorItens);
+            editQuant.setText(itemSelecionado.quantidade.toString());
+            editDescProduto.setText(itemSelecionado.descricao);
         }
 
     }

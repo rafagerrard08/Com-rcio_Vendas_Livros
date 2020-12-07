@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="411.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="telas.TelaRelatorioController">
+   <children>
+      <TableView layoutX="14.0" layoutY="170.0" prefHeight="200.0" prefWidth="788.0">
+        <columns>
+            <TableColumn fx:id="colunaNomeCliente" prefWidth="197.0" text="Nome do cliente" />
+          <TableColumn fx:id="colunaData" prefWidth="161.0" text="Datas das compras" />
+          <TableColumn fx:id="colunaQuant" prefWidth="232.0" text="Quantidades de pedidos" />
+            <TableColumn fx:id="colunaValor" prefWidth="197.0" text="Valores dos pedidos" />
+        </columns>
+      </TableView>
+      <Text layoutX="325.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relatório cliente">
+         <font>
+            <Font name="Sitka Small" size="20.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.5120772946859902" startY="0.27536231884057966">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#a3a360" offset="0.34219269102990035" />
+                  <Stop color="#0428cc" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <Label fx:id="numerosVendas" layoutX="14.0" layoutY="128.0" prefHeight="20.0" prefWidth="141.0" text="Número de vendas" textFill="#902d37">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

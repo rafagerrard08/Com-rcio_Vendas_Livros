@@ -1,5 +1,7 @@
 package registros_Cadastro;
 
+import java.sql.Date;
+
 /**
  *
   * @author rafael_Ferraz
@@ -17,8 +19,8 @@ public class ItemAgendaCadastro {
     public String cidade;
     public String rg;
     public String cpf;
-    public String numero;
-    public String data;
+    public Integer numero;
+    public String  data;
   
     public String getNome() {
         return nome;
@@ -47,7 +49,7 @@ public class ItemAgendaCadastro {
     public String getCpf() {
         return cpf;
     }
-    public String getNumero() {
+    public Integer getNumero() {
         return numero;
     }
          public String getData() {

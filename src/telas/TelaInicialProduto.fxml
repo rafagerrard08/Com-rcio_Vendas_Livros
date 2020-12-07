@@ -73,7 +73,7 @@
          </font>
       </TextField>
       <TextField fx:id="editDesc" alignment="TOP_LEFT" layoutX="14.0" layoutY="200.0" prefHeight="93.0" prefWidth="1101.0" promptText="Descrição do produto:" />
-      <Button layoutX="446.0" layoutY="317.0" mnemonicParsing="false" onAction="#editSalvar" prefHeight="38.0" prefWidth="83.0" text="Salvar" textFill="#32abf2" />
+      <Button layoutX="446.0" layoutY="317.0" mnemonicParsing="false" onAction="#editInserir" prefHeight="38.0" prefWidth="83.0" text="Inserir" textFill="#32abf2" />
       <Button layoutX="555.0" layoutY="317.0" mnemonicParsing="false" onAction="#editLimpar" prefHeight="38.0" prefWidth="83.0" text="Limpar" textFill="#ff5f08" />
       <Text layoutX="36.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Armazenamento de dados" textAlignment="JUSTIFY" wrappingWidth="220.279296875">
          <fill>
@@ -114,15 +114,16 @@
             <Cursor fx:constant="NONE" />
          </cursor>
       </TextField>
-      <TableView fx:id="tabela" layoutX="31.0" layoutY="430.0" prefHeight="197.0" prefWidth="1080.0">
+      <TableView fx:id="tabela" layoutX="31.0" layoutY="430.0" prefHeight="215.0" prefWidth="1093.0">
         <columns>
           <TableColumn fx:id="colunaNome" prefWidth="148.0" text="Nome" />
-          <TableColumn fx:id="colunaBarras" prefWidth="197.0" text="Código de barras" />
-            <TableColumn fx:id="colunaAutor" maxWidth="1000.0" prefWidth="153.0" text="Autor" />
-            <TableColumn fx:id="colunaValor" minWidth="0.0" prefWidth="82.0" text="Valor" />
-            <TableColumn fx:id="colunaQuant" minWidth="0.0" prefWidth="185.0" text="Quantidade" />
-            <TableColumn fx:id="colunaDescricao" minWidth="0.0" prefWidth="149.0" text="Descrição do produto" />
-            <TableColumn fx:id="colunaEditora" minWidth="0.0" prefWidth="169.0" text="Editora" />
+          <TableColumn fx:id="colunaBarras" prefWidth="112.0" text="Código de barras" />
+            <TableColumn fx:id="colunaAutor" maxWidth="1000.0" prefWidth="129.0" text="Autor" />
+            <TableColumn fx:id="colunaValor" minWidth="0.0" prefWidth="112.0" text="Valor" />
+            <TableColumn fx:id="colunaQuant" minWidth="0.0" prefWidth="93.0" text="Quantidade" />
+            <TableColumn fx:id="colunaDescricao" minWidth="0.0" prefWidth="216.0" text="Descrição do produto" />
+            <TableColumn fx:id="colunaEditora" minWidth="0.0" prefWidth="103.0" text="Editora" />
+            <TableColumn fx:id="colunaCategoria" maxWidth="440.0" minWidth="0.0" prefWidth="179.0" text="Categoria" />
             
         </columns>
       </TableView>
@@ -135,6 +136,12 @@
          </font>
       </TextField>
       <TextField fx:id="editQuant" layoutX="289.0" layoutY="159.0" prefHeight="30.0" prefWidth="278.0" promptText="Quantidade:" snapToPixel="false">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="editCategoria" alignment="TOP_LEFT" layoutX="17.0" layoutY="302.0" prefHeight="30.0" prefWidth="324.0" promptText="Categoria" />
+      <TextField fx:id="editCodLivro" layoutX="827.0" layoutY="302.0" opacity="0.0" prefHeight="30.0" prefWidth="264.0" promptText="Nome do produto:" snapToPixel="false" visible="false">
          <font>
             <Font name="Arial" size="14.0" />
          </font>

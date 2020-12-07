@@ -5,30 +5,30 @@ public class ItemAgendaPedido {
     public int id;
     public String numero;
     public String cpf;
-    public String valor;
+    public Double valor;
     public String numeroPedido;
-    public String valorItens;
-    public String quantidade;
+    public Integer quantidade;
     public String data;
     public String livro;
+    public String descricao;
 
     public String getNumeroPedido() {
         return numeroPedido;
     }
 
-    public String getValorItens() {
-        return valorItens;
+    public String getDescProduto() {
+        return descricao;
     }
 
-    public String getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public String getCpf() {
+    public String  getCpf() {
         return cpf;
     }
 
-    public String getValor() {
+    public Double getValor() {
         return valor;
     }
 
