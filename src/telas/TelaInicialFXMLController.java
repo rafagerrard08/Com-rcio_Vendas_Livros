@@ -33,6 +33,7 @@ public class TelaInicialFXMLController implements Initializable {
     private TextField editNome;
     @FXML
     private TextField editCodLivro;
+   
     @FXML
     private TextField editCodBarras;
     @FXML
@@ -115,9 +116,11 @@ public class TelaInicialFXMLController implements Initializable {
         item.editora = editEdit.getText();
         item.valor =  Double.parseDouble( editValor.getText());
          item.descricao = editDesc.getText();
-        item.codlivro = Integer.parseInt(editCodLivro.getText()); 
+        
+         
         
          if(modoEdicao == true){
+             item.codlivro = Integer.parseInt(editCodLivro.getText()); 
              ItemAgendaDAO.editarLivro(item);
          }else{
           ItemAgendaDAO.inserirLivro(item);
@@ -242,11 +245,7 @@ public class TelaInicialFXMLController implements Initializable {
                 
             }
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Validação");
-        alert.setHeaderText("Excluido com sucesso! ");
-        alert.setContentText("Pesquise para confirmar a exclusão!");
-        alert.showAndWait();
+       
 
     }
 

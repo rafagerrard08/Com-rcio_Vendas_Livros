@@ -111,7 +111,7 @@ public class ItemAgendaDAO {
             comando.setString(6, item.editora);
             comando.setBigDecimal(7,  BigDecimal.valueOf(item.valor));            
             comando.setString(8, item.descricao);
-              
+                  
             comando.execute();
                     } 
         
